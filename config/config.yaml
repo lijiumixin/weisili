@@ -1,0 +1,47 @@
+# Twitter配置
+twitter:
+  target_username: "neilksethi"
+  scrape_interval_min: 15  # 最小间隔（分钟）
+  scrape_interval_max: 30  # 最大间隔（分钟）
+
+# OpenAI配置
+openai:
+  api_key: "${OPENAI_API_KEY}"
+  model: "gpt-4o"  # 支持多模态
+  temperature: 0.7
+  max_tokens: 2000
+
+# 翻译配置
+translation:
+  prompt_template_file: "config/translation_prompt.txt"
+  style: "专业、严谨，适合国内金融从业者阅读"
+
+# 微信公众号配置
+wechat:
+  login_url: "https://mp.weixin.qq.com/"
+  state_file: "config/wechat_state.json"
+  publish_interval_min: 0.5   # 发布间隔最小（分钟）- 测试用，生产环境改为3
+  publish_interval_max: 0.5  # 发布间隔最大（分钟）- 测试用，生产环境改为10
+
+# 小红书配置
+xiaohongshu:
+  publish_url: "https://creator.xiaohongshu.com/publish/publish?source=official&from=menu&target=image"
+  state_file: "config/xiaohongshu_state.json"
+  enabled: true  # 是否启用小红书发布
+  fixed_tags: "#股票 #宏观 #投资 #炒股 #投资观察"  # 固定话题标签（带空格）
+
+# 运行模式
+runtime:
+  headless: true  # 后台运行（生产模式）
+  screenshot_on_error: true
+  max_retries: 3
+
+# 通知配置
+notification:
+  desktop_enabled: true
+
+# 日志配置
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file_rotation: "daily"
+  max_log_size_mb: 10
