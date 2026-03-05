@@ -185,16 +185,17 @@ class WeChatPublisher:
             )
     
     async def _navigate_to_article_editor(self):
-        """导航到图文消息编辑页"""
+        """导航到图文消息(贴图)编辑页"""
         try:
-            print("  📍 点击图文菜单...")
+            print("  📍 点击贴图菜单...")
             await self._random_delay(2, 3)
             
-            graph_menu_selector = ".new-creation__menu > div:nth-child(4)"
-            
+            # Using get_by_text which is more robust than nth-child since layout changes
             async with self.context.expect_page() as new_page_info:
-                await self.page.locator(graph_menu_selector).click()
-                print("  ✅ 已点击图文菜单")
+                # Based on the user's screenshot, '贴图' is a text button in the creation menu
+                # Using get_by_text to specifically find "贴图" exactly.
+                await self.page.get_by_text("贴图", exact=True).click()
+                print("  ✅ 已点击贴图菜单")
             
             new_page = await new_page_info.value
             self.page = new_page
